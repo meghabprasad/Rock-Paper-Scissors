@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title><strong> Rock Paper Scissors</strong></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css"/>
+    </head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4"><strong>Rock, Paper, Scissors!</strong></h1>
+            <p class="lead">The best game in the entire world</p>
+        </div>
+    </div>
+    <div class="card-group">
+            <div class="card">
+              <img id = "img1" src="https://vignette.wikia.nocookie.net/scribblenauts/images/0/06/Gamer.png/revision/latest?cb=20130101110059" class="card-img-top" alt="User Choice">
+              <div class="card-body">
+                <h5 class="card-title">Player</h5>
+                <p class="card-text">Pick "r", "p", or "s"</p>
+                <p>You picked: <span id="user-text"><strong>...</strong></span></p>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+              </div>
+            </div>
+            <div class="card">
+              <img id = "img2" src="http://clipart-library.com/images/pio5bGEET.png" class="card-img-top" alt="Computer Choice">
+              <div class="card-body">
+                <h5 class="card-title">Computer</h5>
+                <p class="card-text" id = "comp-text"></p>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+              </div>
+            </div>
+            <div class="card">
+              <img id = "img3" src="https://web.sweeppea.com/blog/wp-content/uploads/Judging-contest-text-sms-e1513618161121.jpg" class="card-img-top" alt="Scores">
+              <div class="card-body">
+                <h5 class="card-title">Score</h5>
+                <p class="card-text" id = "score-text"></p>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+              </div>
+            </div>
+          </div>
+    <script>
+        // create an array of possible values or codes. 
+        // r = rock, p = paper, s = scissors
+        // code for winners: 0 = computer wins, 1 = players wins, 2 = tied!
+        // player chooses r, p, or s 
+        // computer chooses a random letter r, p, s 
+        // compare the keys selected by computer and player using if else statements
+        // r/r p/p s/s ties 
+        var userInput = document.getElementById("user-text"); //right now it is ...
+        var options = ["r", "p", "s"];
+        var tieCount = 0;
+        var userScore = 0;
+        var computerScore = 0;
+        document.onkeyup = function (event) {
+
+            console.log(event);
+
+            userInput.textContent = event.key; //now userText is either r, p, or s
+
+            userText = userInput.textContent;
+            var computerText = options[Math.floor(Math.random() * options.length)]; //computer randomly picks a letter from the array
+            document.getElementById("comp-text").textContent = "Computer picked: " + computerText;
+            console.log("Computer picked: " + computerText);
+            console.log("You picked: " + userText);
+            //ties 
+
+            if (computerText === userText) {
+                tieCount++;
+                console.log("Your score: " + userScore);
+                console.log("Computer's score: " + computerScore);
+                console.log("Tie count " + tieCount);
+                document.getElementById("score-text").textContent = "You tied!";
+            }
+            //other outputs
+            else if (userText === "r" && computerText === "s") {
+                userScore++;
+                console.log("Your score: " + userScore);
+                console.log("Computer's score: " + computerScore);
+                console.log("Tie count " + tieCount);
+                document.getElementById("score-text").textContent = "You Won!";
+            }
+            else if (userText === "r" && computerText === "p") {
+                computerScore++;
+                console.log("Your score: " + userScore);
+                console.log("Computer's score: " + computerScore);
+                console.log("Tie count " + tieCount);
+                document.getElementById("score-text").textContent = "Computer Won!";
+            }
+            else if (userText === "p" && computerText === "r") {
+                userScore++;
+                console.log("Your score: " + userScore);
+                console.log("Computer's score: " + computerScore);
+                console.log("Tie count " + tieCount);
+                document.getElementById("score-text").textContent = "You Won!";
+            }
+            else if (userText === "p" && computerText === "s") {
+                computerScore++;
+                console.log("Your score: " + userScore);
+                console.log("Computer's score: " + computerScore);
+                console.log("Tie count " + tieCount);
+                document.getElementById("score-text").textContent = "Computer Won!";
+            }
+            else if (userText === "s" && computerText === "r") {
+                computerScore++;
+                console.log("Your score: " + userScore);
+                console.log("Computer's score: " + computerScore);
+                console.log("Tie count " + tieCount);
+                document.getElementById("score-text").textContent = "Computer Won!";
+            }
+            else if (userText === "s" && computerText === "p") {
+                userScore++;
+                console.log("Your score: " + userScore);
+                console.log("Computer's score: " + computerScore);
+                console.log("Tie count " + tieCount);
+                document.getElementById("score-text").textContent = "You Won!";
+            }
+            else {
+                console.log("You typed garbage. Try again");
+                document.getElementById("score-text").textContent = "Your input was invalid. Try again!";
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>
